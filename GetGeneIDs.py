@@ -38,5 +38,5 @@ else:
      print(gene+" not found in dictionary. Maybe a typo?")
      sys.exit(1)
 
-print('All done!')
+print('Generated grepline file for '+gene)
 f1.close()
