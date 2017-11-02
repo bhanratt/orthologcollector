@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 #Brian Hanratty
 #bhanratt@asu.edu
-#Accepts a Gene Symbol from user input and produces a file to be read by logcollector.sh
+#Accepts a Gene Symbol from argument and produces a file to be read by logcollector.sh
 
 import sys
 data_table = {}
