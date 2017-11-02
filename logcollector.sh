@@ -3,7 +3,7 @@
 #ASU Bioinformatics Core Lab -- asubioinformatics.org
 #Parses a reference genome for orthologs of a protein
 #Produces Orthlogs.fa, a fasta of all hits
-#FIRST run `Python GetGeneIDs.py` to generate a necessary input file
+#FIRST run `Python GetGeneIDs.py <gene>` to generate a necessary input file
 #Created -- 9/12/2017
 #Dependencies: blat, blastx, pslToBed, bedtools
 #Includes: split.pl
