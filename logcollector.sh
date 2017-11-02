@@ -15,24 +15,26 @@ fi
 
 genome=$1
 peptide=$2
+genomename=`echo ${1%.fa} | sed 's,^[^/]*/,,'`
+peptidename=`echo ${2%.fa} | sed 's,^[^/]*/,,'`
 grepline=`cat grepline.txt`
 
 echo 'Ortholog detector by ASU Bioinformatics Core Lab (asubioinformatics.org) - Last Updated: 10/31/2017'
-echo 'using genome ' $genome;
-echo 'using peptide ' $peptide;
+echo 'using genome ' $genomename;
+echo 'using peptide ' $peptidename;
 date
 echo 'Running Step 1: blat';
 #can set -minScore=65 for more specific results
 #maybe implement pblat to speed up the blat step https://github.com/icebert/pblat
-tools/blat $1 $2 -t=dnax -q=prot -minIdentity=65 -minScore=55 $2.blat.psl;
+tools/blat $1 $2 -t=dnax -q=prot -minIdentity=65 -minScore=55 $genomename.$peptidename.blat.psl;
 date
 echo 'Running Step 2: pslToBed';
-tools/pslToBed $2.blat.psl $2.blat.psl.bed;
+tools/pslToBed $genomename.$peptidename.blat.psl $genomename.$peptidename.blat.psl.bed;
 date
 echo 'Running Step 3: bedtools';
-bedtools getfasta -s -split -fi $genome -bed $2.blat.psl.bed -fo Copies.$peptide;
+bedtools getfasta -s -split -fi $genome -bed $genomename.$peptidename.blat.psl.bed -fo Copies.$peptidename;
 #split fasta by IDs
-perl tools/split.pl --input_file Copies.$peptide --output_dir ./;
+perl tools/split.pl --input_file Copies.$peptidename --output_dir ./;
 date
 echo 'Running Step 4: blastx and parse for protein';
 #parse split protein fastas for occurences of TP53 IDs and filter by identity >=65%
