@@ -27,10 +27,10 @@ if gene in data_table:
 	resultline= ' -e '.join(matchedids)
 	fw=open('grepline.txt', 'w')
 	fw.write('grep -e '+resultline+' $i.blr > $i.blr.tp53')
+	fw.close()
 else:
 	print("Gene not found in dictionary. Maybe a typo?")
 	sys.exit(1)
 
 print('All done!')
 f1.close()
-fw.close()
