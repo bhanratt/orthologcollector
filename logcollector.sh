@@ -37,19 +37,19 @@ bedtools getfasta -s -split -fi $genome -bed $genomename.$peptidename.blat.psl.b
 perl tools/split.pl --input_file Copies.$peptidename --output_dir ./;
 date
 echo 'Running Step 4: blastx and parse for protein';
-#parse split protein fastas for occurences of Protein IDs and filter by identity >=65%
+#parse split protein fastas for occurences of TP53 IDs and filter by identity >=65%
 for i in *.split
 do
 	blastx -outfmt 6 -query $i -subject tools/humanprotein.fa > $i.blr;
 	eval $grepline
-	awk '$3 >= 65.00' $i.blr.$peptidename > $i.blr.$peptidename.passed;
+	awk '$3 >= 65.00' $i.blr.tp53 > $i.blr.tp53.passed;
 done
 #remove non-matches
 find . -name '*.passed' -size 0 -delete
 #save potential hits
-for i in $(ls *.$peptidename.tp53.passed)
+for i in $(ls *.blr.tp53.passed)
 do
-	mv $i ${i%.split.blr.$peptidename.passed}.orth;
+	mv $i ${i%.split.blr.tp53.passed}.orth;
 done
 #save fasta sequences
 for i in $(ls *.orth)
