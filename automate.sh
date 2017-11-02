@@ -13,7 +13,7 @@ for reference in ref/*.fa
 			ref=`echo ${reference%.fa} | sed 's,^[^/]*/,,'`
 			python GetGeneIDs.py $prot
 			bash logcollector.sh $reference $protein
-			mv Results.fa $ref.$prot.fa
-			mv Results.blr $ref.$prot.blr
+			mv Results.fa Results.$ref.$prot.fa
+			mv Results.blr Results.$ref.$prot.blr
 		done
 	done
