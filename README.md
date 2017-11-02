@@ -11,4 +11,5 @@ ncbi-blast+, bedtools
 Functionality to run in batch mode on a collection of reference genomes and protein fastas  
 Load all reference genomes into ref/   
 Load all target proteins into prot/  
+*important:* all fastas must be in .fa format  
 `bash automate.sh`
