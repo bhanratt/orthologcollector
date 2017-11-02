@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 #Brian Hanratty
 #bhanratt@asu.edu
 #Accepts a Gene Symbol from user input and produces a file to be read by logcollector.sh
