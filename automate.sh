@@ -6,13 +6,17 @@
 #Created: 11/2/2017
 #Modified: 2/9/2018
 mkdir results
+for proteindir in prot/*.fa
+	do
+		protdir=`echo ${proteindir%.fa} | sed 's,^[^/]*/,,'`
+		mkdir results/$protdir
+	done
 for reference in ref/*.fa
 	do
 		for protein in prot/*.fa
 			do
 			prot=`echo ${protein%.fa} | sed 's,^[^/]*/,,'`
 			ref=`echo ${reference%.fa} | sed 's,^[^/]*/,,'`
-			mkdir results/$prot
 			python GetGeneIDs.py $prot
 			bash logcollector.sh $reference $protein
 			mv Results.fa results/$prot/Results.$prot.$ref.fa
