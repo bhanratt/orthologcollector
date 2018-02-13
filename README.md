@@ -13,4 +13,4 @@ Load all reference genomes into ref/
 Load all target proteins into prot/  
 *important:* all fastas must be in .fa format  
 `bash automate.sh`  
-Resulted will be placed in a directory beginning with `results` followed by a timestamp. e.g. `results_2018-02-13-11:00:42`
+Results will be placed in a directory beginning with `results` followed by a timestamp. e.g. `results_2018-02-13-11:00:42`
