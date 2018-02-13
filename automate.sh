@@ -4,7 +4,7 @@
 #Automation script for looping through all reference genomes in ref/ and all proteins in prot/
 #Important: All reference genomes and proteins must be in .fa format and loaded into ref/ and prot/ respectively
 #Created: 11/2/2017
-#Modified: 2/9/2018
+#Modified: 2/13/2018
 
 #creates results directory and protein specific subdirectories
 mkdir results
