@@ -5,12 +5,15 @@
 #Important: All reference genomes and proteins must be in .fa format and loaded into ref/ and prot/ respectively
 #Created: 11/2/2017
 #Modified: 2/9/2018
+
+#creates results directory and protein specific subdirectories
 mkdir results
 for proteindir in prot/*.fa
 	do
 		protdir=`echo ${proteindir%.fa} | sed 's,^[^/]*/,,'`
 		mkdir results/$protdir
 	done
+#nested loop for looping through species and target proteins
 for reference in ref/*.fa
 	do
 		for protein in prot/*.fa
@@ -24,6 +27,7 @@ for reference in ref/*.fa
 		done
 	done
 cd results
+#combines results from multiple species into single per-protein files
 for dir in *
 	do
 		cd $dir
@@ -32,3 +36,5 @@ for dir in *
 		cd ..
 	done
 cd ..
+#renames results directory with a timestamp
+mv results results_$(date +%F-%T)
