@@ -19,7 +19,7 @@ genomename=`echo ${1%.fa} | sed 's,^[^/]*/,,'`
 peptidename=`echo ${2%.fa} | sed 's,^[^/]*/,,'`
 grepline=`cat grepline.txt`
 
-echo 'Ortholog detector by ASU Bioinformatics Core Lab (asubioinformatics.org) - Last Updated: 10/31/2017'
+echo 'Ortholog detector by ASU Bioinformatics Core Lab (asubioinformatics.org) - Last Updated: 2/9/2018'
 echo 'using genome ' $genomename;
 echo 'using peptide ' $peptidename;
 date
