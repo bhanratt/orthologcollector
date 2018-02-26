@@ -47,7 +47,6 @@ bedtools getfasta -s -split -fi $genome -bed $genomename.$peptidename.blat.psl.b
 #split fasta by IDs
 perl tools/split.pl --input_file Copies.$peptidename --output_dir ./;
 date
-echo 'Running Step 4: blastx and parse for protein';
 
 #logic to filter out sequences that are smaller than 3X peptide length
 if [ "$lengthfilter" = "y" ]; then
@@ -62,6 +61,7 @@ if [ "$lengthfilter" = "y" ]; then
 		fi
 		done
 fi
+echo 'Running Step 4: blastx and parse for protein';
 #parse split protein fastas for occurences of TP53 IDs and filter by identity >=65%
 for i in *.split
 	do
