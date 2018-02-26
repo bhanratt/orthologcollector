@@ -7,9 +7,10 @@
 #Modified: 2/26/2018
 
 #Prompts user to choose if they want to apply the length filter, which will remove any results that are smaller than 3X the length of the protein.
-read -p "Apply length filter? (y/n)?" CONT
-if [ "$CONT" = "y" ]; then
+read -p "Apply length filter? (y/n)?" ALF
+if [ "$ALF" = "y" ]; then
   lengthchoice="y";
+  read -p "Enter a filter multiplier (e.g. enter 1 to set the filter to 1X the sequence length of the protein): " MULT
 else
   lengthchoice="n";
 fi
@@ -29,7 +30,7 @@ for reference in ref/*.fa
 			prot=`echo ${protein%.fa} | sed 's,^[^/]*/,,'`
 			ref=`echo ${reference%.fa} | sed 's,^[^/]*/,,'`
 			python GetGeneIDs.py $prot
-			bash logcollector.sh $reference $protein $lengthchoice
+			bash logcollector.sh $reference $protein $lengthchoice $MULT
 			mv Results.fa results/$prot/Results.$prot.$ref.fa
 			mv Results.blr results/$prot/Results.$prot.$ref.blr
 		done
