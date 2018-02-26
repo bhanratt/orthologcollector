@@ -9,15 +9,16 @@
 #Includes: split.pl
 
 if [ $# -lt 3 ]; then
-	echo "Usage: $0 <genome fasta> <protein fasta> <y/n for length filter>"
+	echo "Usage: $0 <genome fasta> <protein fasta> <y/n for length filter> <multiplier for length filter>"
 	exit 1
 fi
 
 genome=$1
 peptide=$2
 lengthfilter=$3
+multiplier=$4
 peplength=`cat $peptide | awk '$0 ~ ">" {print c; c=0; } $0 !~ ">" {c+=length($0);} END { print c; }' | tail -n 1`
-p=$((3*peplength))
+p=$(($multiplier*$peplength))
 genomename=`echo ${1%.fa} | sed 's,^[^/]*/,,'`
 peptidename=`echo ${2%.fa} | sed 's,^[^/]*/,,'`
 grepline=`cat grepline.txt`
@@ -26,8 +27,9 @@ echo 'Ortholog detector by ASU Bioinformatics Core Lab (asubioinformatics.org) -
 echo 'using genome ' $genomename;
 echo 'using peptide ' $peptidename;
 echo 'peptide length: ' $peplength;
+echo 'multiplier: ' $multiplier;
 if [ "$lengthfilter" = "y" ]; then
-	echo 'Length filter ON. Will remove any sequences smaller than: '$p;
+	echo 'Length filter ON. Before blastx, will delete sequences smaller than: '$p;
 else
 	echo 'Length filter OFF.';
 fi
