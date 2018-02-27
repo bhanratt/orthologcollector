@@ -5,7 +5,7 @@ ncbi-blast+, bedtools
 
 **Simple run:**  
 1: `python GetGeneIDs.py <gene>`  
-2: `bash logcollector.sh <reference genome fasta> <protein fasta of gene used in step 1>`
+2: `bash logcollector.sh <reference genome fasta> <protein fasta of gene used in step 1> <y or n for apply length filter> <multiplier for filter>`
 
 **Batch run:**  
 Functionality to run in batch mode on a collection of reference genomes and protein fastas  
